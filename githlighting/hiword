@@ -1,0 +1,17 @@
+#!/usr/bin/gawk -f
+
+# Highlights occurence of words in text
+# usage: cat mylogfile | ./hiword <words>  -OR- ./hiword mylogfile.log <words>
+
+BEGIN {
+    for(i = 1; i < ARGC; i++) {
+        words[i] = ARGV[i]
+        ARGV[i] = ""
+    }
+}
+{
+    for (w in words) {
+        gsub(words[w], "[4;32m" words[w] "[0m");
+    }
+    print;
+}

@@ -1,0 +1,25 @@
+#!/usr/bin/gawk -f
+
+# Prints only lines that do not contain certain words (or patterns)
+# usage: ./filterout word_1 word_2 ...
+
+BEGIN {
+    for(i = 1; i < ARGC; i++) {
+        words[i] = ARGV[i]
+        ARGV[i] = ""
+    }
+}
+{
+    matched = 0;
+    for (i in words) {
+        if($0 ~ words[i]) {
+            matched=1;
+            break;
+        }
+    }
+
+    if(!matched) {
+        print $0;
+    }
+    matched = 0;
+}

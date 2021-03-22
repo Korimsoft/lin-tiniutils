@@ -1,0 +1,18 @@
+#!/usr/bin/gawk -f
+
+# Prints only lines that contain certain words (or regexes)
+# usage: ./filterword word_1 word_2 ...
+
+BEGIN {
+    for(i = 1; i < ARGC; i++) {
+        words[i] = ARGV[i]
+        ARGV[i] = ""
+    }
+}
+{
+    for (i in words) {
+        if($0 ~ words[i]) {
+            print $0;
+        }
+    }
+}
