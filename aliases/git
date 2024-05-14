@@ -1,0 +1,4 @@
+alias gife="git fetch"
+alias gicam="git commit -a -m"
+alias gicaa="git commit -a --amend"
+alias gip="git push"
